@@ -11,8 +11,7 @@ pipeline {
         }
         stage('Build env') {
             steps {
-                sh "ip=${(curl https://ipinfo.io/ip)}"
-                sh "echo '# Host configuration\nPORT=8080\nHOST=0.0.0.0\nNODE_ENV=development\nHOST_URL=http://$ip:8080\nCOOKIE_ENCRYPT_PWD=superAwesomePasswordStringThatIsAtLeast32CharactersLong!\n# Okta configuration\nOKTA_ORG_URL=https://$okta_url\nOKTA_CLIENT_ID=$okta_id\nOKTA_CLIENT_SECRET=$okta_secret\n# Postgres configuration\nPGHOST=$db_fqnd\nPGUSERNAME=$db_user\nPGDATABASE=postgres\nPGPASSWORD=$db_password\nPGPORT=5432' > .env"
+                sh "bash buildEnv.sh -u ${okta_url} -i ${okta_id} -s ${okta_secret} -h ${db_fqnd} -p ${db_password} -n ${db_user}"
             }
         }
         stage('Deploy'){
