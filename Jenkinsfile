@@ -16,7 +16,7 @@ pipeline {
         }
         stage('package'){
             steps{
-                archiveArtifacts artifacts: '*.zip', followSymlinks: false
+                archiveArtifacts artifacts: '*.jar', followSymlinks: false
             }
         }
         // stage('Deploy'){
