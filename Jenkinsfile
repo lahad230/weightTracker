@@ -14,5 +14,12 @@ pipeline {
                 sh "bash buildEnv.sh -u ${okta_url} -i ${okta_id} -s ${okta_secret} -h ${db_fqnd} -p ${db_password} -n ${db_user}"
             }
         }
+        stage('Deploy'){
+            steps{
+                sh "sudo pm2 start src/index.js"
+                sh "sudo pm2 save"
+                sh "sudo pm2 startup"
+            }
+        }
     }
 }
