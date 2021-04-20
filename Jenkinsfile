@@ -16,8 +16,8 @@ pipeline {
         stage('package'){
             steps{
                 zip zipFile: "${BUILD_NUMBER}.zip", exclude: "*.zip"
-                zip zipFile: "latest.zip"
-                archiveArtifacts artifacts: "${BUILD_NUMBER}.zip, latest.zip", followSymlinks: false
+                zip zipFile: "latest.zip", exclude: "*.zip"
+                archiveArtifacts artifacts: "${BUILD_NUMBER}.zip, latest.zip", followSymlinks: false, overwrite: true
             }
         }
         // stage('Deploy'){
