@@ -1,0 +1,35 @@
+pipeline {
+    agent 'staging'
+    stages {
+        stage('Build dependencies') { 
+            steps {
+                sh "curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -"
+                sh "sudo apt-get install -y nodejs"
+                sh "sudo npm install pm2 -g"
+                sh "sudo npm install cjs"
+            }
+        }
+        stage('Build env') {
+            sh 'ip=$(curl https://ipinfo.io/ip)
+                echo "# Host configuration
+                PORT=8080
+                HOST=0.0.0.0
+                NODE_ENV=development
+                HOST_URL=http://$ip:8080
+                COOKIE_ENCRYPT_PWD=superAwesomePasswordStringThatIsAtLeast32CharactersLong!
+                # Okta configuration
+                OKTA_ORG_URL=https://$okta_url
+                OKTA_CLIENT_ID=$okta_id
+                OKTA_CLIENT_SECRET=$okta_secret
+                # Postgres configuration
+                PGHOST=$db_fqnd
+                PGUSERNAME=$db_user
+                PGDATABASE=postgres
+                PGPASSWORD=$db_password
+                PGPORT=5432" > .env"'
+        }
+        stage('Deploy'){
+            build job: 'weightCI'
+        }
+    }
+}
