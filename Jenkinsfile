@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                build job: 'weightCI'
+                build job: 'weightCD'
             }
         }
     }
