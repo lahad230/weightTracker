@@ -15,7 +15,7 @@ pipeline {
         }
         stage('package'){
             steps{
-                zip zipFile: "${BUILD_NUMBER}.zip"
+                zip zipFile: "${BUILD_NUMBER}.zip", exclude: "*.zip"
                 zip zipFile: "latest.zip"
                 archiveArtifacts artifacts: "${BUILD_NUMBER}.zip, latest.zip", followSymlinks: false
             }
