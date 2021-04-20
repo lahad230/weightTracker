@@ -14,10 +14,15 @@ pipeline {
                 sh "bash buildEnv.sh -u ${okta_url} -i ${okta_id} -s ${okta_secret} -h ${db_fqnd} -p ${db_password} -n ${db_user}"
             }
         }
-        stage('Deploy'){
-            steps{
-                build job: 'weightCD'
-            }
+        // stage('Deploy'){
+        //     steps{
+        //         build job: 'weightCD'
+        //     }
+        // }
+    }
+    post{
+        success{
+            build job: 'weightCD'
         }
     }
 }
