@@ -3,12 +3,10 @@ pipeline {
     stages {
         stage('Build dependencies') { 
             steps {
-                dir('../weightCI') {
-                    sh "curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -"
-                    sh "sudo apt-get install -y nodejs"
-                    sh "sudo npm install pm2 -g"
-                    sh "sudo npm install cjs"
-                }
+                sh "curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -"
+                sh "sudo apt-get install -y nodejs"
+                sh "sudo npm install pm2 -g"
+                sh "sudo npm install cjs"
             }
         }
         stage('Build env') {
