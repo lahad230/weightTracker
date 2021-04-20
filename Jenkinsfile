@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build dependencies') { 
             steps {
-                dir('../weightCI@2') {
+                dir('../weightCI') {
                     sh "curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -"
                     sh "sudo apt-get install -y nodejs"
                     sh "sudo npm install pm2 -g"
