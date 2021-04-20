@@ -16,7 +16,7 @@ pipeline {
         stage('package'){
             steps{
                 zip zipFile: "${BUILD_NUMBER}.zip"
-                archiveArtifacts artifacts: '*.zip', followSymlinks: false
+                archiveArtifacts artifacts: "${BUILD_NUMBER}.zip", followSymlinks: false
             }
         }
         // stage('Deploy'){
