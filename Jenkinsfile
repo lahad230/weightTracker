@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh "sudo pm2 start src/index.js"
+                sh "sudo pm2 start src/index.js -f"
                 sh "sudo pm2 save"
                 sh "sudo pm2 startup"
             }
