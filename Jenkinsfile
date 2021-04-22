@@ -8,9 +8,9 @@ pipeline {
         }
         stage('package'){
             steps{
-                //zip zipFile: "${BUILD_NUMBER}.zip", exclude: "*.zip"
+                zip zipFile: "${BUILD_NUMBER}.zip", exclude: "*.zip"
                 zip zipFile: "latest.zip", exclude: "*.zip", overwrite: true
-                archiveArtifacts artifacts: "latest.zip", followSymlinks: false
+                archiveArtifacts artifacts: "${BUILD_NUMBER}.zip, latest.zip", followSymlinks: false
             }
         }
     }
