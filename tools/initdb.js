@@ -10,7 +10,8 @@ const init = async () => {
 	try {
 		// connect to the local database server
 		const sql = postgres();
-
+		
+		 //removed drop db
 		// console.log( "dropping table, if exists..." );
 		// await sql`DROP TABLE IF EXISTS measurements`;
 
