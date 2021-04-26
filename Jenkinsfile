@@ -1,6 +1,5 @@
 pipeline {
-    //agent {label 'CISlave'}
-    agent none
+    agent {label 'CISlave'}
     stages {                
         stage('Build dependencies') { 
             steps {
