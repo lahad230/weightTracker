@@ -20,8 +20,8 @@ pipeline {
         }
         stage('push to dockerhub'){
             steps{
-                sh "docker build -t smallpox230/weight:latest"
-                sh "docker push smallpox230/weight:latest"
+                sh "sudo docker build -t smallpox230/weight:latest"
+                sh "sudo docker push smallpox230/weight:latest"
             }
         }
         // stage('package'){
