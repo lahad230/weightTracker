@@ -2,6 +2,7 @@
 FROM node:15-alpine
 WORKDIR /app
 
+COPY package*.json ./
 #copy app and dependencies
 COPY . .
 
