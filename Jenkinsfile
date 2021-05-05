@@ -18,12 +18,18 @@ pipeline {
                 sh "sudo npm install cjs"
             }
         }
-        stage('package'){
+        stage('push to dockerhub'){
             steps{
-                //zip zipFile: "${BUILD_NUMBER}.zip", exclude: "*.zip"
-                zip zipFile: "latest.zip", exclude: "*.zip", overwrite: true
-                archiveArtifacts artifacts: "latest.zip", followSymlinks: false
+                sh "docker build -t smallpox230/weight:latest"
+                sh "docker push smallpox230/weight:latest"
             }
         }
+        // stage('package'){
+        //     steps{
+        //         //zip zipFile: "${BUILD_NUMBER}.zip", exclude: "*.zip"
+        //         zip zipFile: "latest.zip", exclude: "*.zip", overwrite: true
+        //         archiveArtifacts artifacts: "latest.zip", followSymlinks: false
+        //     }
+        // }
     }
 }
