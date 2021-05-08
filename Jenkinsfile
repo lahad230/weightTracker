@@ -11,19 +11,19 @@ pipeline {
                 sh "sudo apt -y install docker-ce"
             }
         }       
-        stage('Build dependencies') { 
-            steps {
-                sh "curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -"
-                sh "sudo apt-get install -y nodejs"
-                sh "sudo npm install cjs"
-            }
-        }
         stage('push to dockerhub'){
             steps{
                 sh "sudo docker build -t smallpox230/weight:${BUILD_NUMBER} ."
                 sh "sudo docker push smallpox230/weight:${BUILD_NUMBER}"
             }
         }
+        // stage('Build dependencies') { 
+        //     steps {
+        //         sh "curl -fsSL https://deb.nodesource.com/setup_15.x | sudo -E bash -"
+        //         sh "sudo apt-get install -y nodejs"
+        //         sh "sudo npm install cjs"
+        //     }
+        // }
         // stage('package'){
         //     steps{
         //         //zip zipFile: "${BUILD_NUMBER}.zip", exclude: "*.zip"
